@@ -30,7 +30,7 @@
 
 
   <!-- send the lip robot XML to param server -->
-  <group ns="lip" >
+  <group ns="lip">
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find inverted_pendulum_control)/model/$(arg model).urdf'" />
 
     <rosparam file="$(find inverted_pendulum_control)/config/lip.yaml" command="load"/>
