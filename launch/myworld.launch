@@ -18,7 +18,7 @@
   <node pkg="gazebo_ros" type="gzclient" ns="/" args="verbose" respawn="True" respawn_delay="0.0" name="gzclient" required="False" / -->
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find mybot_gazebo)/worlds/mybot.world"/>
+    <arg name="world_name" value="$(find inverted_pendulum_control)/worlds/mybot.world"/>
     <!--arg name="world_name" value="$(find mybot_gazebo)/worlds/turtlebot_playground.world"/-->
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
