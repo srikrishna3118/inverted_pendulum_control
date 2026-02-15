@@ -1,0 +1,10 @@
+lip_control:
+  ros__parameters:
+    joint_name: j_0
+    kp: 220.0
+    ki: 5.0
+    kd: 40.0
+    target_theta: 0.0
+    effort_limit: 120.0
+    integral_limit: 30.0
+    control_sign: 1.0

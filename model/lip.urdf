@@ -53,15 +53,6 @@
     <child link="l_0"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
-  <transmission name="j_0_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="j_0">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="j_0_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
   <gazebo reference="j_0">
     <provideFeedback>true</provideFeedback>
   </gazebo>
@@ -82,9 +73,25 @@
   <gazebo reference="l_frame">
     <material>Gazebo/Orange</material>
   </gazebo>
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="j_0">
+      <command_interface name="effort"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+  </ros2_control>
   <gazebo>
-    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <robotNamespace>lip</robotNamespace>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+      <ros>
+        <namespace>lip</namespace>
+      </ros>
+      <robot_param>robot_description</robot_param>
+      <parameters>$(find inverted_pendulum_control)/config/lip.yaml</parameters>
+      <robot_param_node>robot_state_publisher</robot_param_node>
     </plugin>
   </gazebo>
 </robot>

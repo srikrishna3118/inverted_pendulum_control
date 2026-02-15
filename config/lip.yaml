@@ -1,11 +1,31 @@
-#lip:
-  # Publish all joint states -----------------------------------
-  joint_state_controller:
-    type: joint_state_controller/JointStateController
-    publish_rate: 1000
+controller_manager:
+  ros__parameters:
+    update_rate: 1000
 
-  # Effort Controllers ---------------------------------------
-  joint_effort_controller_j_0:
-    type: effort_controllers/JointEffortController
-    joint: j_0
-    # pid: {p: 100.0, i: 0.01, d: 10.0}
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    joint_effort_controller_j_0:
+      type: forward_command_controller/ForwardCommandController
+
+joint_effort_controller_j_0:
+  ros__parameters:
+    joints:
+      - j_0
+    interface_name: effort
+
+/lip/controller_manager:
+  ros__parameters:
+    update_rate: 1000
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    joint_effort_controller_j_0:
+      type: forward_command_controller/ForwardCommandController
+
+/lip/joint_effort_controller_j_0:
+  ros__parameters:
+    joints:
+      - j_0
+    interface_name: effort
